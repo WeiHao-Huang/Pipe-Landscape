@@ -1,0 +1,102 @@
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_setup.py:_flush():76] Current SDK version is 0.17.2
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_setup.py:_flush():76] Configure stats pid to 2498460
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_setup.py:_flush():76] Loading settings from /home/chenyupeng/.config/wandb/settings
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_setup.py:_flush():76] Loading settings from /home/chenyupeng/yupeng/jaggi-lr/src/wandb/settings
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/chenyupeng/yupeng/jaggi-lr/src/main.py', 'program': '/home/chenyupeng/yupeng/jaggi-lr/src/main.py'}
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_init.py:_log_setup():520] Logging user logs to /home/chenyupeng/yupeng/jaggi-lr/src/wandb/run-20241110_132144-oyc9vvw0/logs/debug.log
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_init.py:_log_setup():521] Logging internal logs to /home/chenyupeng/yupeng/jaggi-lr/src/wandb/run-20241110_132144-oyc9vvw0/logs/debug-internal.log
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_init.py:init():560] calling init triggers
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {'config_format': 'base', 'experiment_name': None, 'seed': 0, 'data_seed': 1337, 'eval_interval': 200, 'full_eval_at': [], 'eval_batches': 32, 'device': 'cuda:0', 'distributed_backend': None, 'log_interval': 50, 'results_base_folder': '/mntcephfs/lab_data/chenyupeng/senmiao_jaggi_exp_results', 'permanent_ckpt_interval': 0, 'latest_ckpt_interval': 0, 'resume_from': None, 'resume_from_swa': None, 'auto_resume': True, 'phase1_steps': 3000, 'phase2_steps': 27000, 'phase1_interval': 300, 'phase2_interval': 4000, 'phase3_interval': 1000, 'wandb': True, 'wandb_project': 'my-project', 'wandb_run_prefix': 'none', 'eval_seq_prefix': 'none', 'log_dynamics': False, 'dynamics_logger_cfg': './src/logger/rotational_logger.yaml', 'scheduler': 'wsd', 'cos_inf_steps': 0, 'iterations': 45000, 'warmup_steps': 300, 'lr': 0.001, 'wsd_final_lr_scale': 0.0, 'wsd_fract_decay': 0.4, 'decay_type': 'linear', 'opt': 'adamw', 'batch_size': 50, 'acc_steps': 4, 'weight_decay': 0.1, 'beta1': 0.9, 'beta2': 0.95, 'grad_clip': 1.0, 'weight_average': False, 'wa_interval': 5, 'wa_horizon': 500, 'wa_dtype': 'float32', 'wa_use_temp_dir': False, 'wa_sweep_horizon': False, 'max_num_wa_sweeps': 5, 'exponential_moving_average': False, 'ema_interval': 10, 'ema_decay': 0.95, 'ema_after_warmup': False, 'datasets_dir': '/mntcephfs/lab_data/chenyupeng/llm_datasets', 'dataset': 'slimpajama', 'tokenizer': 'gpt2', 'vocab_size': 50304, 'data_in_ram': False, 'model': 'llama', 'parallel_block': False, 'use_pretrained': 'none', 'from_dense': False, 'init_std': 0.02, 'dropout': 0.0, 'n_head': 12, 'n_layer': 12, 'sequence_length': 512, 'n_embd': 768, 'multiple_of': 256, 'rmsnorm_eps': 1e-05, 'dtype': 'bfloat16', 'bias': False, 'compile': True, 'mlp_dim_exp_factor': 1.0, 'world_size': 1}
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_init.py:init():610] starting backend
+2024-11-10 13:21:44,761 INFO    MainThread:2498460 [wandb_init.py:init():614] setting up manager
+2024-11-10 13:21:44,762 INFO    MainThread:2498460 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-11-10 13:21:44,773 INFO    MainThread:2498460 [wandb_init.py:init():622] backend started and connected
+2024-11-10 13:21:44,776 INFO    MainThread:2498460 [wandb_init.py:init():711] updated telemetry
+2024-11-10 13:21:44,776 INFO    MainThread:2498460 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2024-11-10 13:22:43,455 INFO    Thread-1 (wrapped_target):2498460 [retry.py:__call__():172] Retry attempt failed:
+Traceback (most recent call last):
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/util/connection.py", line 95, in create_connection
+    raise err
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connectionpool.py", line 715, in urlopen
+    httplib_response = self._make_request(
+                       ^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connectionpool.py", line 404, in _make_request
+    self._validate_conn(conn)
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1060, in _validate_conn
+    conn.connect()
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connection.py", line 363, in connect
+    self.sock = conn = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connection.py", line 179, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x1554709b4a10>, 'Connection to api.wandb.ai timed out. (connect timeout=20)')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connectionpool.py", line 801, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/util/retry.py", line 594, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.wandb.ai', port=443): Max retries exceeded with url: /graphql (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1554709b4a10>, 'Connection to api.wandb.ai timed out. (connect timeout=20)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/sdk/lib/retry.py", line 131, in __call__
+    result = self._call_fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/sdk/internal/internal_api.py", line 340, in execute
+    return self.client.execute(*args, **kwargs)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 52, in execute
+    result = self._get_result(document, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 60, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/sdk/lib/gql_request.py", line 58, in execute
+    request = self.session.post(self.url, **post_args)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/requests/sessions.py", line 637, in post
+    return self.request("POST", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/requests/adapters.py", line 688, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='api.wandb.ai', port=443): Max retries exceeded with url: /graphql (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1554709b4a10>, 'Connection to api.wandb.ai timed out. (connect timeout=20)'))
+2024-11-10 13:23:14,788 ERROR   MainThread:2498460 [wandb_init.py:init():770] encountered error: Run initialization has timed out after 90.0 sec. 
+Please refer to the documentation for additional information: https://docs.wandb.ai/guides/track/tracking-faq#initstarterror-error-communicating-with-wandb-process-
+2024-11-10 13:23:14,788 ERROR   MainThread:2498460 [wandb_init.py:init():1181] error in wandb.init()
+Traceback (most recent call last):
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1171, in init
+    return wi.init()
+           ^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 776, in init
+    raise error
+wandb.errors.CommError: Run initialization has timed out after 90.0 sec. 
+Please refer to the documentation for additional information: https://docs.wandb.ai/guides/track/tracking-faq#initstarterror-error-communicating-with-wandb-process-
+2024-11-10 13:23:17,797 WARNING MsgRouterThr:2498460 [router.py:message_loop():77] message_loop has been closed

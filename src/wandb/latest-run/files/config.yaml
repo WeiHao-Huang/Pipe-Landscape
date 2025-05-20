@@ -1,0 +1,289 @@
+wandb_version: 1
+
+config_format:
+  desc: null
+  value: base
+experiment_name:
+  desc: null
+  value: null
+seed:
+  desc: null
+  value: 0
+data_seed:
+  desc: null
+  value: 1337
+eval_interval:
+  desc: null
+  value: 200
+full_eval_at:
+  desc: null
+  value: []
+eval_batches:
+  desc: null
+  value: 32
+device:
+  desc: null
+  value: cuda:0
+distributed_backend:
+  desc: null
+  value: null
+log_interval:
+  desc: null
+  value: 50
+results_base_folder:
+  desc: null
+  value: /mntcephfs/lab_data/chenyupeng/senmiao_jaggi_exp_results
+permanent_ckpt_interval:
+  desc: null
+  value: 0
+latest_ckpt_interval:
+  desc: null
+  value: 0
+resume_from:
+  desc: null
+  value: null
+resume_from_swa:
+  desc: null
+  value: null
+auto_resume:
+  desc: null
+  value: true
+phase1_steps:
+  desc: null
+  value: 3000
+phase2_steps:
+  desc: null
+  value: 27000
+phase1_interval:
+  desc: null
+  value: 300
+phase2_interval:
+  desc: null
+  value: 4000
+phase3_interval:
+  desc: null
+  value: 1000
+wandb:
+  desc: null
+  value: true
+wandb_project:
+  desc: null
+  value: my-project
+wandb_run_prefix:
+  desc: null
+  value: none
+eval_seq_prefix:
+  desc: null
+  value: none
+log_dynamics:
+  desc: null
+  value: false
+dynamics_logger_cfg:
+  desc: null
+  value: ./src/logger/rotational_logger.yaml
+scheduler:
+  desc: null
+  value: wsd
+cos_inf_steps:
+  desc: null
+  value: 0
+iterations:
+  desc: null
+  value: 45000
+warmup_steps:
+  desc: null
+  value: 300
+lr:
+  desc: null
+  value: 0.001
+wsd_final_lr_scale:
+  desc: null
+  value: 0.0
+wsd_fract_decay:
+  desc: null
+  value: 0.2
+decay_type:
+  desc: null
+  value: linear
+opt:
+  desc: null
+  value: adamw
+batch_size:
+  desc: null
+  value: 50
+acc_steps:
+  desc: null
+  value: 4
+weight_decay:
+  desc: null
+  value: 0.1
+beta1:
+  desc: null
+  value: 0.9
+beta2:
+  desc: null
+  value: 0.95
+grad_clip:
+  desc: null
+  value: 1.0
+weight_average:
+  desc: null
+  value: false
+wa_interval:
+  desc: null
+  value: 5
+wa_horizon:
+  desc: null
+  value: 500
+wa_dtype:
+  desc: null
+  value: float32
+wa_use_temp_dir:
+  desc: null
+  value: false
+wa_sweep_horizon:
+  desc: null
+  value: false
+max_num_wa_sweeps:
+  desc: null
+  value: 5
+exponential_moving_average:
+  desc: null
+  value: false
+ema_interval:
+  desc: null
+  value: 10
+ema_decay:
+  desc: null
+  value: 0.95
+ema_after_warmup:
+  desc: null
+  value: false
+datasets_dir:
+  desc: null
+  value: /mntcephfs/lab_data/chenyupeng/llm_datasets
+dataset:
+  desc: null
+  value: slimpajama
+tokenizer:
+  desc: null
+  value: gpt2
+vocab_size:
+  desc: null
+  value: 50304
+data_in_ram:
+  desc: null
+  value: false
+model:
+  desc: null
+  value: llama
+parallel_block:
+  desc: null
+  value: false
+use_pretrained:
+  desc: null
+  value: none
+from_dense:
+  desc: null
+  value: false
+init_std:
+  desc: null
+  value: 0.02
+dropout:
+  desc: null
+  value: 0.0
+n_head:
+  desc: null
+  value: 12
+n_layer:
+  desc: null
+  value: 12
+sequence_length:
+  desc: null
+  value: 512
+n_embd:
+  desc: null
+  value: 768
+multiple_of:
+  desc: null
+  value: 256
+rmsnorm_eps:
+  desc: null
+  value: 1.0e-05
+dtype:
+  desc: null
+  value: bfloat16
+bias:
+  desc: null
+  value: false
+compile:
+  desc: null
+  value: true
+mlp_dim_exp_factor:
+  desc: null
+  value: 1.0
+world_size:
+  desc: null
+  value: 1
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.9
+    cli_version: 0.17.2
+    framework: huggingface
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1731218030
+    t:
+      1:
+      - 1
+      - 49
+      - 51
+      - 55
+      - 105
+      2:
+      - 1
+      - 11
+      - 49
+      - 51
+      - 55
+      - 105
+      3:
+      - 7
+      - 13
+      - 16
+      - 23
+      4: 3.11.9
+      5: 0.17.2
+      8:
+      - 5
+      13: linux-x86_64
+    m:
+    - 1: iter
+      6:
+      - 3
+    - 1: lr
+      5: 1
+      6:
+      - 1
+      - 3
+    - 1: val/loss
+      5: 1
+      6:
+      - 1
+    - 1: val/perplexity
+      5: 1
+      6:
+      - 1
+    - 1: val/acc
+      5: 1
+      6:
+      - 1
+    - 1: train/loss
+      5: 1
+      6:
+      - 1
+    - 1: train/perplexity
+      5: 1
+      6:
+      - 1

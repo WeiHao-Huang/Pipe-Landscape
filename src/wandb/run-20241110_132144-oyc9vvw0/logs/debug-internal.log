@@ -1,0 +1,101 @@
+2024-11-10 13:21:44,763 INFO    StreamThr :2498530 [internal.py:wandb_internal():85] W&B internal server running at pid: 2498530, started at: 2024-11-10 13:21:44.763264
+2024-11-10 13:21:44,764 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: status
+2024-11-10 13:21:44,776 INFO    WriterThread:2498530 [datastore.py:open_for_write():87] open: /home/chenyupeng/yupeng/jaggi-lr/src/wandb/run-20241110_132144-oyc9vvw0/run-oyc9vvw0.wandb
+2024-11-10 13:21:44,777 DEBUG   SenderThread:2498530 [sender.py:send():379] send: header
+2024-11-10 13:21:44,777 DEBUG   SenderThread:2498530 [sender.py:send():379] send: run
+2024-11-10 13:21:49,778 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:21:54,778 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:21:59,779 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:04,780 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:09,780 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:14,781 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:19,782 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:24,782 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:29,783 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:34,783 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:39,784 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:44,784 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:48,544 INFO    SenderThread:2498530 [retry.py:__call__():172] Retry attempt failed:
+Traceback (most recent call last):
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/util/connection.py", line 95, in create_connection
+    raise err
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connectionpool.py", line 715, in urlopen
+    httplib_response = self._make_request(
+                       ^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connectionpool.py", line 404, in _make_request
+    self._validate_conn(conn)
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1060, in _validate_conn
+    conn.connect()
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connection.py", line 363, in connect
+    self.sock = conn = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connection.py", line 179, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x15552d871610>, 'Connection to api.wandb.ai timed out. (connect timeout=20)')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/connectionpool.py", line 801, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/urllib3/util/retry.py", line 594, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.wandb.ai', port=443): Max retries exceeded with url: /graphql (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x15552d871610>, 'Connection to api.wandb.ai timed out. (connect timeout=20)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/sdk/lib/retry.py", line 131, in __call__
+    result = self._call_fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/sdk/internal/internal_api.py", line 340, in execute
+    return self.client.execute(*args, **kwargs)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 52, in execute
+    result = self._get_result(document, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/vendor/gql-0.2.0/wandb_gql/client.py", line 60, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/wandb/sdk/lib/gql_request.py", line 58, in execute
+    request = self.session.post(self.url, **post_args)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/requests/sessions.py", line 637, in post
+    return self.request("POST", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mntcephfs/lab_data/chenyupeng/conda_files/envs/transformers310-jaggi/lib/python3.11/site-packages/requests/adapters.py", line 688, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='api.wandb.ai', port=443): Max retries exceeded with url: /graphql (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x15552d871610>, 'Connection to api.wandb.ai timed out. (connect timeout=20)'))
+2024-11-10 13:22:49,785 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:54,786 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:22:59,786 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:23:04,787 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:23:09,787 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: keepalive
+2024-11-10 13:23:14,788 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: cancel
+2024-11-10 13:23:14,788 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: cancel
+2024-11-10 13:23:14,788 DEBUG   SenderThread:2498530 [sender.py:send():388] Record cancelled: run
+2024-11-10 13:23:14,788 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: status_report
+2024-11-10 13:23:16,796 DEBUG   HandlerThread:2498530 [handler.py:handle_request():158] handle_request: shutdown
+2024-11-10 13:23:16,796 INFO    HandlerThread:2498530 [handler.py:finish():882] shutting down handler
+2024-11-10 13:23:17,789 INFO    SenderThread:2498530 [sender.py:finish():1608] shutting down sender
+2024-11-10 13:23:17,789 INFO    WriterThread:2498530 [datastore.py:close():296] close: /home/chenyupeng/yupeng/jaggi-lr/src/wandb/run-20241110_132144-oyc9vvw0/run-oyc9vvw0.wandb

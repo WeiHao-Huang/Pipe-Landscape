@@ -1,0 +1,395 @@
+Starting Experiment: slimpajama_llama_nlayers8_nhead6_lr0.002_sched_wsd_warmup1500_decay_linear_0.9_iter15000_bs50x4_ws1_seed0_data_seed1337
+Experiment Directory: /mntcephfs/lab_data/chenyupeng/senmiao_jaggi_exp_results/slimpajama_llama_nlayers8_nhead6_lr0.002_sched_wsd_warmup1500_decay_linear_0.9_iter15000_bs50x4_ws1_seed0_data_seed1337
+Config:
+{'config_format': 'base', 'experiment_name': None, 'seed': 0, 'data_seed': 1337, 'eval_interval': 200, 'full_eval_at': [], 'eval_batches': 32, 'device': 'cuda:0', 'distributed_backend': None, 'log_interval': 50, 'results_base_folder': '/mntcephfs/lab_data/chenyupeng/senmiao_jaggi_exp_results', 'permanent_ckpt_interval': 0, 'latest_ckpt_interval': 0, 'resume_from': None, 'resume_from_swa': None, 'auto_resume': True, 'checkpoint_steps': [], 'wandb': True, 'wandb_project': 'my-project', 'wandb_run_prefix': 'none', 'eval_seq_prefix': 'none', 'log_dynamics': False, 'dynamics_logger_cfg': './src/logger/rotational_logger.yaml', 'scheduler': 'wsd', 'cos_inf_steps': 0, 'iterations': 15000, 'warmup_steps': 1500, 'lr': 0.002, 'wsd_final_lr_scale': 0.0, 'wsd_fract_decay': 0.9, 'decay_type': 'linear', 'opt': 'adamw', 'batch_size': 50, 'acc_steps': 4, 'weight_decay': 0.1, 'beta1': 0.9, 'beta2': 0.95, 'grad_clip': 1.0, 'weight_average': False, 'wa_interval': 5, 'wa_horizon': 500, 'wa_dtype': 'float32', 'wa_use_temp_dir': False, 'wa_sweep_horizon': False, 'max_num_wa_sweeps': 5, 'exponential_moving_average': False, 'ema_interval': 10, 'ema_decay': 0.95, 'ema_after_warmup': False, 'datasets_dir': '/mntcephfs/lab_data/chenyupeng/llm_datasets', 'dataset': 'slimpajama', 'tokenizer': 'gpt2', 'vocab_size': 50304, 'data_in_ram': False, 'model': 'llama', 'parallel_block': False, 'use_pretrained': 'none', 'from_dense': False, 'init_std': 0.02, 'dropout': 0.0, 'n_head': 6, 'n_layer': 8, 'sequence_length': 512, 'n_embd': 384, 'multiple_of': 256, 'rmsnorm_eps': 1e-05, 'dtype': 'bfloat16', 'bias': False, 'compile': True, 'mlp_dim_exp_factor': 1.0, 'world_size': 1}
+Loading dataset: 'slimpajama'
+/mntcephfs/lab_data/chenyupeng/llm_datasets/slimpajama6B/
+Num training tokens: 5827933038
+Num validation tokens: 9479563
+Model:
+Llama(
+  (transformer): ModuleDict(
+    (wte): Embedding(50304, 384)
+    (drop): Dropout(p=0.0, inplace=False)
+    (h): ModuleList(
+      (0-7): 8 x LlamaBlock(
+        (ln_1): RMSNorm()
+        (attn): LlamaAttention(
+          (c_attn): Linear(in_features=384, out_features=1152, bias=False)
+          (c_proj): Linear(in_features=384, out_features=384, bias=False)
+          (attn_dropout): Dropout(p=0.0, inplace=False)
+          (resid_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (ln_2): RMSNorm()
+        (mlp): LlamaMLP(
+          (w1): Linear(in_features=384, out_features=1024, bias=False)
+          (w2): Linear(in_features=384, out_features=1024, bias=False)
+          (c_proj): Linear(in_features=1024, out_features=384, bias=False)
+        )
+      )
+    )
+    (ln_f): RMSNorm()
+  )
+  (lm_head): Linear(in_features=384, out_features=50304, bias=False)
+)
+number of parameters: 33.48M
+number of optimized parameters: 33.48M
+Optimizer:
+AdamW (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.95)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.002
+    maximize: False
+    weight_decay: 0.1
+Parameter Group 1
+    amsgrad: False
+    betas: (0.9, 0.95)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.002
+    maximize: False
+    weight_decay: 0.0
+)
+Compiling model ...
+>Eval: Iter=0 (0.000 epochs) val_loss=10.873 val_pp=52757.342 val_acc=0.014714
+Train: Iter=50 (0.001 epochs) train_loss=9.148 iter_dt=2.12e-01s lr=8.60e-05
+Train: Iter=100 (0.002 epochs) train_loss=7.457 iter_dt=2.12e-01s lr=1.52e-04
+Train: Iter=150 (0.003 epochs) train_loss=6.563 iter_dt=2.12e-01s lr=2.18e-04
+Train: Iter=200 (0.003 epochs) train_loss=6.330 iter_dt=2.13e-01s lr=2.84e-04
+>Eval: Iter=200 (0.004 epochs) val_loss=6.373 val_pp=585.826 val_acc=0.173345
+Train: Iter=250 (0.004 epochs) train_loss=5.974 iter_dt=2.13e-01s lr=3.50e-04
+Train: Iter=300 (0.005 epochs) train_loss=5.676 iter_dt=2.13e-01s lr=4.16e-04
+Train: Iter=350 (0.006 epochs) train_loss=5.640 iter_dt=2.13e-01s lr=4.82e-04
+Train: Iter=400 (0.007 epochs) train_loss=5.434 iter_dt=2.13e-01s lr=5.48e-04
+>Eval: Iter=400 (0.007 epochs) val_loss=5.557 val_pp=259.166 val_acc=0.206003
+Train: Iter=450 (0.008 epochs) train_loss=5.416 iter_dt=2.12e-01s lr=6.14e-04
+Train: Iter=500 (0.009 epochs) train_loss=5.219 iter_dt=2.13e-01s lr=6.80e-04
+Train: Iter=550 (0.010 epochs) train_loss=5.069 iter_dt=2.12e-01s lr=7.46e-04
+Train: Iter=600 (0.011 epochs) train_loss=4.679 iter_dt=2.13e-01s lr=8.12e-04
+>Eval: Iter=600 (0.011 epochs) val_loss=5.082 val_pp=161.102 val_acc=0.233434
+Train: Iter=650 (0.011 epochs) train_loss=4.726 iter_dt=2.13e-01s lr=8.78e-04
+Train: Iter=700 (0.012 epochs) train_loss=4.827 iter_dt=2.13e-01s lr=9.44e-04
+Train: Iter=750 (0.013 epochs) train_loss=4.610 iter_dt=2.13e-01s lr=1.01e-03
+Train: Iter=800 (0.014 epochs) train_loss=4.795 iter_dt=2.13e-01s lr=1.08e-03
+>Eval: Iter=800 (0.014 epochs) val_loss=4.649 val_pp=104.488 val_acc=0.280431
+Train: Iter=850 (0.015 epochs) train_loss=4.529 iter_dt=2.13e-01s lr=1.14e-03
+Train: Iter=900 (0.016 epochs) train_loss=4.576 iter_dt=2.13e-01s lr=1.21e-03
+Train: Iter=950 (0.017 epochs) train_loss=4.387 iter_dt=2.13e-01s lr=1.27e-03
+Train: Iter=1000 (0.018 epochs) train_loss=4.451 iter_dt=2.13e-01s lr=1.34e-03
+>Eval: Iter=1000 (0.018 epochs) val_loss=4.445 val_pp=85.238 val_acc=0.300692
+Train: Iter=1050 (0.018 epochs) train_loss=4.367 iter_dt=2.14e-01s lr=1.41e-03
+Train: Iter=1100 (0.019 epochs) train_loss=4.747 iter_dt=2.13e-01s lr=1.47e-03
+Train: Iter=1150 (0.020 epochs) train_loss=4.261 iter_dt=2.13e-01s lr=1.54e-03
+Train: Iter=1200 (0.021 epochs) train_loss=4.295 iter_dt=2.13e-01s lr=1.60e-03
+>Eval: Iter=1200 (0.021 epochs) val_loss=4.345 val_pp=77.080 val_acc=0.309816
+Train: Iter=1250 (0.022 epochs) train_loss=4.355 iter_dt=2.13e-01s lr=1.67e-03
+Train: Iter=1300 (0.023 epochs) train_loss=4.361 iter_dt=2.13e-01s lr=1.74e-03
+Train: Iter=1350 (0.024 epochs) train_loss=4.269 iter_dt=2.13e-01s lr=1.80e-03
+Train: Iter=1400 (0.025 epochs) train_loss=4.049 iter_dt=2.13e-01s lr=1.87e-03
+>Eval: Iter=1400 (0.025 epochs) val_loss=4.268 val_pp=71.378 val_acc=0.315521
+>Eval: Iter=1400 (0.025 epochs) val_loss=4.268 val_pp=71.378 val_acc=0.315521
+Train: Iter=1500 (0.026 epochs) train_loss=4.246 iter_dt=2.13e-01s lr=2.00e-03
+Train: Iter=1500 (0.026 epochs) train_loss=4.246 iter_dt=2.13e-01s lr=2.00e-03
+Train: Iter=1500 (0.026 epochs) train_loss=4.246 iter_dt=2.13e-01s lr=2.00e-03
+Train: Iter=1600 (0.028 epochs) train_loss=4.062 iter_dt=2.14e-01s lr=1.99e-03
+Train: Iter=1650 (0.029 epochs) train_loss=4.146 iter_dt=2.13e-01s lr=1.98e-03
+Train: Iter=1650 (0.029 epochs) train_loss=4.146 iter_dt=2.13e-01s lr=1.98e-03
+Train: Iter=1750 (0.031 epochs) train_loss=4.188 iter_dt=2.13e-01s lr=1.96e-03
+Train: Iter=1750 (0.031 epochs) train_loss=4.188 iter_dt=2.13e-01s lr=1.96e-03
+>Eval: Iter=1800 (0.032 epochs) val_loss=4.137 val_pp=62.614 val_acc=0.3268133
+>Eval: Iter=1800 (0.032 epochs) val_loss=4.137 val_pp=62.614 val_acc=0.3268133
+Train: Iter=1900 (0.033 epochs) train_loss=4.069 iter_dt=2.13e-01s lr=1.94e-03
+Train: Iter=1900 (0.033 epochs) train_loss=4.069 iter_dt=2.13e-01s lr=1.94e-03
+Train: Iter=2000 (0.035 epochs) train_loss=4.004 iter_dt=2.14e-01s lr=1.93e-03
+Train: Iter=2050 (0.036 epochs) train_loss=4.181 iter_dt=2.13e-01s lr=1.92e-03
+Train: Iter=2050 (0.036 epochs) train_loss=4.181 iter_dt=2.13e-01s lr=1.92e-03
+Train: Iter=2150 (0.038 epochs) train_loss=4.043 iter_dt=2.13e-01s lr=1.90e-03
+>Eval: Iter=2200 (0.039 epochs) val_loss=4.047 val_pp=57.221 val_acc=0.3343883
+>Eval: Iter=2200 (0.039 epochs) val_loss=4.047 val_pp=57.221 val_acc=0.3343883
+Train: Iter=2300 (0.040 epochs) train_loss=4.163 iter_dt=2.14e-01s lr=1.88e-03
+Train: Iter=2300 (0.040 epochs) train_loss=4.163 iter_dt=2.14e-01s lr=1.88e-03
+Train: Iter=2400 (0.042 epochs) train_loss=4.083 iter_dt=2.13e-01s lr=1.87e-03
+Train: Iter=2400 (0.042 epochs) train_loss=4.083 iter_dt=2.13e-01s lr=1.87e-03
+Train: Iter=2450 (0.043 epochs) train_loss=4.067 iter_dt=2.13e-01s lr=1.86e-03
+Train: Iter=2450 (0.043 epochs) train_loss=4.067 iter_dt=2.13e-01s lr=1.86e-03
+Train: Iter=2550 (0.045 epochs) train_loss=4.016 iter_dt=2.13e-01s lr=1.84e-03
+>Eval: Iter=2600 (0.046 epochs) val_loss=3.981 val_pp=53.562 val_acc=0.3397683
+>Eval: Iter=2600 (0.046 epochs) val_loss=3.981 val_pp=53.562 val_acc=0.3397683
+Train: Iter=2700 (0.047 epochs) train_loss=3.871 iter_dt=2.13e-01s lr=1.82e-03
+Train: Iter=2700 (0.047 epochs) train_loss=3.871 iter_dt=2.13e-01s lr=1.82e-03
+Train: Iter=2800 (0.049 epochs) train_loss=3.499 iter_dt=2.13e-01s lr=1.81e-03
+Train: Iter=2800 (0.049 epochs) train_loss=3.499 iter_dt=2.13e-01s lr=1.81e-03
+Train: Iter=2850 (0.050 epochs) train_loss=3.917 iter_dt=2.13e-01s lr=1.80e-03
+Train: Iter=2850 (0.050 epochs) train_loss=3.917 iter_dt=2.13e-01s lr=1.80e-03
+Train: Iter=2950 (0.052 epochs) train_loss=3.904 iter_dt=2.13e-01s lr=1.79e-03
+>Eval: Iter=3000 (0.053 epochs) val_loss=3.932 val_pp=51.010 val_acc=0.3440143
+>Eval: Iter=3000 (0.053 epochs) val_loss=3.932 val_pp=51.010 val_acc=0.3440143
+Train: Iter=3100 (0.054 epochs) train_loss=3.794 iter_dt=2.13e-01s lr=1.76e-03
+Train: Iter=3100 (0.054 epochs) train_loss=3.794 iter_dt=2.13e-01s lr=1.76e-03
+Train: Iter=3200 (0.056 epochs) train_loss=3.997 iter_dt=2.13e-01s lr=1.75e-03
+Train: Iter=3250 (0.057 epochs) train_loss=3.891 iter_dt=2.13e-01s lr=1.74e-03
+Train: Iter=3250 (0.057 epochs) train_loss=3.891 iter_dt=2.13e-01s lr=1.74e-03
+Train: Iter=3350 (0.059 epochs) train_loss=3.981 iter_dt=2.14e-01s lr=1.73e-03
+Train: Iter=3350 (0.059 epochs) train_loss=3.981 iter_dt=2.14e-01s lr=1.73e-03
+>Eval: Iter=3400 (0.060 epochs) val_loss=3.896 val_pp=49.195 val_acc=0.3470573
+>Eval: Iter=3400 (0.060 epochs) val_loss=3.896 val_pp=49.195 val_acc=0.3470573
+Train: Iter=3500 (0.061 epochs) train_loss=3.672 iter_dt=2.13e-01s lr=1.70e-03
+Train: Iter=3500 (0.061 epochs) train_loss=3.672 iter_dt=2.13e-01s lr=1.70e-03
+Train: Iter=3600 (0.063 epochs) train_loss=4.028 iter_dt=2.13e-01s lr=1.69e-03
+Train: Iter=3650 (0.064 epochs) train_loss=3.959 iter_dt=2.13e-01s lr=1.68e-03
+Train: Iter=3650 (0.064 epochs) train_loss=3.959 iter_dt=2.13e-01s lr=1.68e-03
+Train: Iter=3750 (0.066 epochs) train_loss=3.798 iter_dt=2.13e-01s lr=1.67e-03
+>Eval: Iter=3800 (0.067 epochs) val_loss=3.865 val_pp=47.683 val_acc=0.3502953
+>Eval: Iter=3800 (0.067 epochs) val_loss=3.865 val_pp=47.683 val_acc=0.3502953
+Train: Iter=3900 (0.069 epochs) train_loss=3.849 iter_dt=2.13e-01s lr=1.64e-03
+Train: Iter=3900 (0.069 epochs) train_loss=3.849 iter_dt=2.13e-01s lr=1.64e-03
+Train: Iter=4000 (0.070 epochs) train_loss=3.554 iter_dt=2.13e-01s lr=1.63e-03
+Train: Iter=4050 (0.071 epochs) train_loss=3.780 iter_dt=2.14e-01s lr=1.62e-03
+Train: Iter=4050 (0.071 epochs) train_loss=3.780 iter_dt=2.14e-01s lr=1.62e-03
+Train: Iter=4150 (0.073 epochs) train_loss=3.562 iter_dt=2.14e-01s lr=1.61e-03
+>Eval: Iter=4200 (0.074 epochs) val_loss=3.840 val_pp=46.515 val_acc=0.3526373
+>Eval: Iter=4200 (0.074 epochs) val_loss=3.840 val_pp=46.515 val_acc=0.3526373
+Train: Iter=4300 (0.076 epochs) train_loss=3.590 iter_dt=2.13e-01s lr=1.59e-03
+Train: Iter=4300 (0.076 epochs) train_loss=3.590 iter_dt=2.13e-01s lr=1.59e-03
+Train: Iter=4400 (0.077 epochs) train_loss=3.973 iter_dt=2.13e-01s lr=1.57e-03
+Train: Iter=4400 (0.077 epochs) train_loss=3.973 iter_dt=2.13e-01s lr=1.57e-03
+Train: Iter=4450 (0.078 epochs) train_loss=3.845 iter_dt=2.13e-01s lr=1.56e-03
+Train: Iter=4450 (0.078 epochs) train_loss=3.845 iter_dt=2.13e-01s lr=1.56e-03
+Train: Iter=4550 (0.080 epochs) train_loss=3.735 iter_dt=2.13e-01s lr=1.55e-03
+>Eval: Iter=4600 (0.081 epochs) val_loss=3.819 val_pp=45.548 val_acc=0.3549043
+>Eval: Iter=4600 (0.081 epochs) val_loss=3.819 val_pp=45.548 val_acc=0.3549043
+Train: Iter=4700 (0.083 epochs) train_loss=3.875 iter_dt=2.13e-01s lr=1.53e-03
+Train: Iter=4700 (0.083 epochs) train_loss=3.875 iter_dt=2.13e-01s lr=1.53e-03
+Train: Iter=4800 (0.084 epochs) train_loss=3.660 iter_dt=2.13e-01s lr=1.51e-03
+Train: Iter=4850 (0.085 epochs) train_loss=3.961 iter_dt=2.13e-01s lr=1.50e-03
+Train: Iter=4850 (0.085 epochs) train_loss=3.961 iter_dt=2.13e-01s lr=1.50e-03
+Train: Iter=4950 (0.087 epochs) train_loss=3.666 iter_dt=2.13e-01s lr=1.49e-03
+>Eval: Iter=5000 (0.088 epochs) val_loss=3.797 val_pp=44.579 val_acc=0.3566493
+>Eval: Iter=5000 (0.088 epochs) val_loss=3.797 val_pp=44.579 val_acc=0.3566493
+Train: Iter=5100 (0.090 epochs) train_loss=3.854 iter_dt=2.13e-01s lr=1.47e-03
+Train: Iter=5100 (0.090 epochs) train_loss=3.854 iter_dt=2.13e-01s lr=1.47e-03
+Train: Iter=5200 (0.091 epochs) train_loss=3.739 iter_dt=2.13e-01s lr=1.45e-03
+Train: Iter=5250 (0.092 epochs) train_loss=3.812 iter_dt=2.13e-01s lr=1.44e-03
+Train: Iter=5250 (0.092 epochs) train_loss=3.812 iter_dt=2.13e-01s lr=1.44e-03
+Train: Iter=5350 (0.094 epochs) train_loss=3.852 iter_dt=2.12e-01s lr=1.43e-03
+Train: Iter=5350 (0.094 epochs) train_loss=3.852 iter_dt=2.12e-01s lr=1.43e-03
+>Eval: Iter=5400 (0.095 epochs) val_loss=3.781 val_pp=43.866 val_acc=0.3579363
+>Eval: Iter=5400 (0.095 epochs) val_loss=3.781 val_pp=43.866 val_acc=0.3579363
+Train: Iter=5500 (0.097 epochs) train_loss=4.043 iter_dt=2.13e-01s lr=1.41e-03
+Train: Iter=5500 (0.097 epochs) train_loss=4.043 iter_dt=2.13e-01s lr=1.41e-03
+Train: Iter=5600 (0.098 epochs) train_loss=3.797 iter_dt=2.13e-01s lr=1.39e-03
+Train: Iter=5650 (0.099 epochs) train_loss=3.765 iter_dt=2.13e-01s lr=1.39e-03
+Train: Iter=5650 (0.099 epochs) train_loss=3.765 iter_dt=2.13e-01s lr=1.39e-03
+Train: Iter=5750 (0.101 epochs) train_loss=3.762 iter_dt=2.14e-01s lr=1.37e-03
+>Eval: Iter=5800 (0.102 epochs) val_loss=3.764 val_pp=43.127 val_acc=0.3596353
+>Eval: Iter=5800 (0.102 epochs) val_loss=3.764 val_pp=43.127 val_acc=0.3596353
+Train: Iter=5900 (0.104 epochs) train_loss=3.788 iter_dt=2.13e-01s lr=1.35e-03
+Train: Iter=5900 (0.104 epochs) train_loss=3.788 iter_dt=2.13e-01s lr=1.35e-03
+Train: Iter=6000 (0.105 epochs) train_loss=3.599 iter_dt=2.13e-01s lr=1.33e-03
+Train: Iter=6000 (0.105 epochs) train_loss=3.599 iter_dt=2.13e-01s lr=1.33e-03
+Train: Iter=6050 (0.106 epochs) train_loss=3.809 iter_dt=2.14e-01s lr=1.33e-03
+Train: Iter=6050 (0.106 epochs) train_loss=3.809 iter_dt=2.14e-01s lr=1.33e-03
+Train: Iter=6150 (0.108 epochs) train_loss=3.589 iter_dt=2.13e-01s lr=1.31e-03
+>Eval: Iter=6200 (0.109 epochs) val_loss=3.751 val_pp=42.543 val_acc=0.3609923
+>Eval: Iter=6200 (0.109 epochs) val_loss=3.751 val_pp=42.543 val_acc=0.3609923
+Train: Iter=6300 (0.111 epochs) train_loss=3.732 iter_dt=2.14e-01s lr=1.29e-03
+Train: Iter=6300 (0.111 epochs) train_loss=3.732 iter_dt=2.14e-01s lr=1.29e-03
+Train: Iter=6400 (0.112 epochs) train_loss=3.868 iter_dt=2.13e-01s lr=1.27e-03
+Train: Iter=6400 (0.112 epochs) train_loss=3.868 iter_dt=2.13e-01s lr=1.27e-03
+Train: Iter=6450 (0.113 epochs) train_loss=3.698 iter_dt=2.13e-01s lr=1.27e-03
+Train: Iter=6450 (0.113 epochs) train_loss=3.698 iter_dt=2.13e-01s lr=1.27e-03
+Train: Iter=6550 (0.115 epochs) train_loss=3.542 iter_dt=2.13e-01s lr=1.25e-03
+>Eval: Iter=6600 (0.116 epochs) val_loss=3.737 val_pp=41.953 val_acc=0.3626923
+>Eval: Iter=6600 (0.116 epochs) val_loss=3.737 val_pp=41.953 val_acc=0.3626923
+Train: Iter=6700 (0.118 epochs) train_loss=3.654 iter_dt=2.13e-01s lr=1.23e-03
+Train: Iter=6700 (0.118 epochs) train_loss=3.654 iter_dt=2.13e-01s lr=1.23e-03
+>Eval: Iter=6800 (0.119 epochs) val_loss=3.731 val_pp=41.715 val_acc=0.3635053
+>Eval: Iter=6800 (0.119 epochs) val_loss=3.731 val_pp=41.715 val_acc=0.3635053
+>Eval: Iter=6800 (0.119 epochs) val_loss=3.731 val_pp=41.715 val_acc=0.3635053
+>Eval: Iter=6800 (0.119 epochs) val_loss=3.731 val_pp=41.715 val_acc=0.3635053
+>Eval: Iter=6800 (0.119 epochs) val_loss=3.731 val_pp=41.715 val_acc=0.3635053
+>Eval: Iter=6800 (0.119 epochs) val_loss=3.731 val_pp=41.715 val_acc=0.3635053
+>Eval: Iter=6800 (0.119 epochs) val_loss=3.731 val_pp=41.715 val_acc=0.3635053
+>Eval: Iter=6800 (0.119 epochs) val_loss=3.731 val_pp=41.715 val_acc=0.3635053
+>Eval: Iter=6800 (0.119 epochs) val_loss=3.731 val_pp=41.715 val_acc=0.3635053
+>Eval: Iter=7200 (0.127 epochs) val_loss=3.718 val_pp=41.200 val_acc=0.3644083
+>Eval: Iter=7200 (0.127 epochs) val_loss=3.718 val_pp=41.200 val_acc=0.3644083
+>Eval: Iter=7200 (0.127 epochs) val_loss=3.718 val_pp=41.200 val_acc=0.3644083
+>Eval: Iter=7200 (0.127 epochs) val_loss=3.718 val_pp=41.200 val_acc=0.3644083
+>Eval: Iter=7200 (0.127 epochs) val_loss=3.718 val_pp=41.200 val_acc=0.3644083
+>Eval: Iter=7400 (0.130 epochs) val_loss=3.713 val_pp=40.976 val_acc=0.3651863
+>Eval: Iter=7400 (0.130 epochs) val_loss=3.713 val_pp=40.976 val_acc=0.3651863
+>Eval: Iter=7400 (0.130 epochs) val_loss=3.713 val_pp=40.976 val_acc=0.3651863
+>Eval: Iter=7400 (0.130 epochs) val_loss=3.713 val_pp=40.976 val_acc=0.3651863
+>Eval: Iter=7600 (0.134 epochs) val_loss=3.706 val_pp=40.672 val_acc=0.3658643
+>Eval: Iter=7600 (0.134 epochs) val_loss=3.706 val_pp=40.672 val_acc=0.3658643
+>Eval: Iter=7600 (0.134 epochs) val_loss=3.706 val_pp=40.672 val_acc=0.3658643
+>Eval: Iter=7600 (0.134 epochs) val_loss=3.706 val_pp=40.672 val_acc=0.3658643
+>Eval: Iter=7800 (0.137 epochs) val_loss=3.701 val_pp=40.493 val_acc=0.3660413
+>Eval: Iter=7800 (0.137 epochs) val_loss=3.701 val_pp=40.493 val_acc=0.3660413
+>Eval: Iter=7800 (0.137 epochs) val_loss=3.701 val_pp=40.493 val_acc=0.3660413
+>Eval: Iter=7800 (0.137 epochs) val_loss=3.701 val_pp=40.493 val_acc=0.3660413
+>Eval: Iter=7800 (0.137 epochs) val_loss=3.701 val_pp=40.493 val_acc=0.3660413
+>Eval: Iter=7800 (0.137 epochs) val_loss=3.701 val_pp=40.493 val_acc=0.3660413
+>Eval: Iter=7800 (0.137 epochs) val_loss=3.701 val_pp=40.493 val_acc=0.3660413
+>Eval: Iter=7800 (0.137 epochs) val_loss=3.701 val_pp=40.493 val_acc=0.3660413
+>Eval: Iter=7800 (0.137 epochs) val_loss=3.701 val_pp=40.493 val_acc=0.3660413
+>Eval: Iter=8200 (0.144 epochs) val_loss=3.692 val_pp=40.106 val_acc=0.3669693
+>Eval: Iter=8200 (0.144 epochs) val_loss=3.692 val_pp=40.106 val_acc=0.3669693
+>Eval: Iter=8200 (0.144 epochs) val_loss=3.692 val_pp=40.106 val_acc=0.3669693
+>Eval: Iter=8200 (0.144 epochs) val_loss=3.692 val_pp=40.106 val_acc=0.3669693
+>Eval: Iter=8400 (0.148 epochs) val_loss=3.685 val_pp=39.860 val_acc=0.3677443
+>Eval: Iter=8400 (0.148 epochs) val_loss=3.685 val_pp=39.860 val_acc=0.3677443
+>Eval: Iter=8400 (0.148 epochs) val_loss=3.685 val_pp=39.860 val_acc=0.3677443
+>Eval: Iter=8400 (0.148 epochs) val_loss=3.685 val_pp=39.860 val_acc=0.3677443
+>Eval: Iter=8400 (0.148 epochs) val_loss=3.685 val_pp=39.860 val_acc=0.3677443
+>Eval: Iter=8600 (0.151 epochs) val_loss=3.681 val_pp=39.673 val_acc=0.3682033
+>Eval: Iter=8600 (0.151 epochs) val_loss=3.681 val_pp=39.673 val_acc=0.3682033
+>Eval: Iter=8600 (0.151 epochs) val_loss=3.681 val_pp=39.673 val_acc=0.3682033
+>Eval: Iter=8600 (0.151 epochs) val_loss=3.681 val_pp=39.673 val_acc=0.3682033
+>Eval: Iter=8800 (0.155 epochs) val_loss=3.674 val_pp=39.412 val_acc=0.3687553
+>Eval: Iter=8800 (0.155 epochs) val_loss=3.674 val_pp=39.412 val_acc=0.3687553
+>Eval: Iter=8800 (0.155 epochs) val_loss=3.674 val_pp=39.412 val_acc=0.3687553
+>Eval: Iter=8800 (0.155 epochs) val_loss=3.674 val_pp=39.412 val_acc=0.3687553
+>Eval: Iter=8800 (0.155 epochs) val_loss=3.674 val_pp=39.412 val_acc=0.3687553
+>Eval: Iter=8800 (0.155 epochs) val_loss=3.674 val_pp=39.412 val_acc=0.3687553
+>Eval: Iter=8800 (0.155 epochs) val_loss=3.674 val_pp=39.412 val_acc=0.3687553
+>Eval: Iter=8800 (0.155 epochs) val_loss=3.674 val_pp=39.412 val_acc=0.3687553
+>Eval: Iter=8800 (0.155 epochs) val_loss=3.674 val_pp=39.412 val_acc=0.3687553
+>Eval: Iter=9200 (0.162 epochs) val_loss=3.663 val_pp=38.996 val_acc=0.3699673
+>Eval: Iter=9200 (0.162 epochs) val_loss=3.663 val_pp=38.996 val_acc=0.3699673
+>Eval: Iter=9200 (0.162 epochs) val_loss=3.663 val_pp=38.996 val_acc=0.3699673
+>Eval: Iter=9200 (0.162 epochs) val_loss=3.663 val_pp=38.996 val_acc=0.3699673
+>Eval: Iter=9400 (0.165 epochs) val_loss=3.658 val_pp=38.778 val_acc=0.3705243
+>Eval: Iter=9400 (0.165 epochs) val_loss=3.658 val_pp=38.778 val_acc=0.3705243
+>Eval: Iter=9400 (0.165 epochs) val_loss=3.658 val_pp=38.778 val_acc=0.3705243
+>Eval: Iter=9400 (0.165 epochs) val_loss=3.658 val_pp=38.778 val_acc=0.3705243
+>Eval: Iter=9600 (0.169 epochs) val_loss=3.653 val_pp=38.583 val_acc=0.3708623
+>Eval: Iter=9600 (0.169 epochs) val_loss=3.653 val_pp=38.583 val_acc=0.3708623
+>Eval: Iter=9600 (0.169 epochs) val_loss=3.653 val_pp=38.583 val_acc=0.3708623
+>Eval: Iter=9600 (0.169 epochs) val_loss=3.653 val_pp=38.583 val_acc=0.3708623
+>Eval: Iter=9600 (0.169 epochs) val_loss=3.653 val_pp=38.583 val_acc=0.3708623
+>Eval: Iter=9800 (0.172 epochs) val_loss=3.648 val_pp=38.399 val_acc=0.3713333
+>Eval: Iter=9800 (0.172 epochs) val_loss=3.648 val_pp=38.399 val_acc=0.3713333
+>Eval: Iter=9800 (0.172 epochs) val_loss=3.648 val_pp=38.399 val_acc=0.3713333
+>Eval: Iter=9800 (0.172 epochs) val_loss=3.648 val_pp=38.399 val_acc=0.3713333
+>Eval: Iter=9800 (0.172 epochs) val_loss=3.648 val_pp=38.399 val_acc=0.3713333
+>Eval: Iter=9800 (0.172 epochs) val_loss=3.648 val_pp=38.399 val_acc=0.3713333
+>Eval: Iter=9800 (0.172 epochs) val_loss=3.648 val_pp=38.399 val_acc=0.3713333
+>Eval: Iter=9800 (0.172 epochs) val_loss=3.648 val_pp=38.399 val_acc=0.3713333
+>Eval: Iter=9800 (0.172 epochs) val_loss=3.648 val_pp=38.399 val_acc=0.3713333
+>Eval: Iter=10200 (0.179 epochs) val_loss=3.639 val_pp=38.062 val_acc=0.372814
+>Eval: Iter=10200 (0.179 epochs) val_loss=3.639 val_pp=38.062 val_acc=0.372814
+>Eval: Iter=10200 (0.179 epochs) val_loss=3.639 val_pp=38.062 val_acc=0.372814
+>Eval: Iter=10200 (0.179 epochs) val_loss=3.639 val_pp=38.062 val_acc=0.372814
+>Eval: Iter=10400 (0.183 epochs) val_loss=3.633 val_pp=37.844 val_acc=0.372776
+>Eval: Iter=10400 (0.183 epochs) val_loss=3.633 val_pp=37.844 val_acc=0.372776
+>Eval: Iter=10400 (0.183 epochs) val_loss=3.633 val_pp=37.844 val_acc=0.372776
+>Eval: Iter=10400 (0.183 epochs) val_loss=3.633 val_pp=37.844 val_acc=0.372776
+>Eval: Iter=10400 (0.183 epochs) val_loss=3.633 val_pp=37.844 val_acc=0.372776
+>Eval: Iter=10400 (0.183 epochs) val_loss=3.633 val_pp=37.844 val_acc=0.372776
+>Eval: Iter=10400 (0.183 epochs) val_loss=3.633 val_pp=37.844 val_acc=0.372776
+>Eval: Iter=10400 (0.183 epochs) val_loss=3.633 val_pp=37.844 val_acc=0.372776
+>Eval: Iter=10400 (0.183 epochs) val_loss=3.633 val_pp=37.844 val_acc=0.372776
+>Eval: Iter=10800 (0.190 epochs) val_loss=3.623 val_pp=37.448 val_acc=0.374027
+>Eval: Iter=10800 (0.190 epochs) val_loss=3.623 val_pp=37.448 val_acc=0.374027
+>Eval: Iter=10800 (0.190 epochs) val_loss=3.623 val_pp=37.448 val_acc=0.374027
+>Eval: Iter=10800 (0.190 epochs) val_loss=3.623 val_pp=37.448 val_acc=0.374027
+>Eval: Iter=10800 (0.190 epochs) val_loss=3.623 val_pp=37.448 val_acc=0.374027
+>Eval: Iter=10800 (0.190 epochs) val_loss=3.623 val_pp=37.448 val_acc=0.374027
+>Eval: Iter=10800 (0.190 epochs) val_loss=3.623 val_pp=37.448 val_acc=0.374027
+>Eval: Iter=10800 (0.190 epochs) val_loss=3.623 val_pp=37.448 val_acc=0.374027
+>Eval: Iter=10800 (0.190 epochs) val_loss=3.623 val_pp=37.448 val_acc=0.374027
+>Eval: Iter=11200 (0.197 epochs) val_loss=3.614 val_pp=37.097 val_acc=0.375226
+>Eval: Iter=11200 (0.197 epochs) val_loss=3.614 val_pp=37.097 val_acc=0.375226
+>Eval: Iter=11200 (0.197 epochs) val_loss=3.614 val_pp=37.097 val_acc=0.375226
+>Eval: Iter=11200 (0.197 epochs) val_loss=3.614 val_pp=37.097 val_acc=0.375226
+>Eval: Iter=11400 (0.200 epochs) val_loss=3.609 val_pp=36.924 val_acc=0.375350
+>Eval: Iter=11400 (0.200 epochs) val_loss=3.609 val_pp=36.924 val_acc=0.375350
+>Eval: Iter=11400 (0.200 epochs) val_loss=3.609 val_pp=36.924 val_acc=0.375350
+>Eval: Iter=11400 (0.200 epochs) val_loss=3.609 val_pp=36.924 val_acc=0.375350
+>Eval: Iter=11400 (0.200 epochs) val_loss=3.609 val_pp=36.924 val_acc=0.375350
+>Eval: Iter=11400 (0.200 epochs) val_loss=3.609 val_pp=36.924 val_acc=0.375350
+>Eval: Iter=11400 (0.200 epochs) val_loss=3.609 val_pp=36.924 val_acc=0.375350
+>Eval: Iter=11400 (0.200 epochs) val_loss=3.609 val_pp=36.924 val_acc=0.375350
+>Eval: Iter=11400 (0.200 epochs) val_loss=3.609 val_pp=36.924 val_acc=0.375350
+>Eval: Iter=11800 (0.207 epochs) val_loss=3.600 val_pp=36.608 val_acc=0.376480
+>Eval: Iter=11800 (0.207 epochs) val_loss=3.600 val_pp=36.608 val_acc=0.376480
+>Eval: Iter=11800 (0.207 epochs) val_loss=3.600 val_pp=36.608 val_acc=0.376480
+>Eval: Iter=11800 (0.207 epochs) val_loss=3.600 val_pp=36.608 val_acc=0.376480
+>Eval: Iter=12000 (0.211 epochs) val_loss=3.595 val_pp=36.405 val_acc=0.376885
+>Eval: Iter=12000 (0.211 epochs) val_loss=3.595 val_pp=36.405 val_acc=0.376885
+>Eval: Iter=12000 (0.211 epochs) val_loss=3.595 val_pp=36.405 val_acc=0.376885
+>Eval: Iter=12000 (0.211 epochs) val_loss=3.595 val_pp=36.405 val_acc=0.376885
+>Eval: Iter=12200 (0.214 epochs) val_loss=3.589 val_pp=36.180 val_acc=0.377317
+>Eval: Iter=12200 (0.214 epochs) val_loss=3.589 val_pp=36.180 val_acc=0.377317
+>Eval: Iter=12200 (0.214 epochs) val_loss=3.589 val_pp=36.180 val_acc=0.377317
+>Eval: Iter=12200 (0.214 epochs) val_loss=3.589 val_pp=36.180 val_acc=0.377317
+>Eval: Iter=12400 (0.218 epochs) val_loss=3.584 val_pp=36.005 val_acc=0.378127
+>Eval: Iter=12400 (0.218 epochs) val_loss=3.584 val_pp=36.005 val_acc=0.378127
+>Eval: Iter=12400 (0.218 epochs) val_loss=3.584 val_pp=36.005 val_acc=0.378127
+>Eval: Iter=12400 (0.218 epochs) val_loss=3.584 val_pp=36.005 val_acc=0.378127
+>Eval: Iter=12400 (0.218 epochs) val_loss=3.584 val_pp=36.005 val_acc=0.378127
+>Eval: Iter=12400 (0.218 epochs) val_loss=3.584 val_pp=36.005 val_acc=0.378127
+>Eval: Iter=12400 (0.218 epochs) val_loss=3.584 val_pp=36.005 val_acc=0.378127
+>Eval: Iter=12400 (0.218 epochs) val_loss=3.584 val_pp=36.005 val_acc=0.378127
+>Eval: Iter=12400 (0.218 epochs) val_loss=3.584 val_pp=36.005 val_acc=0.378127
+>Eval: Iter=12800 (0.225 epochs) val_loss=3.575 val_pp=35.690 val_acc=0.379395
+>Eval: Iter=12800 (0.225 epochs) val_loss=3.575 val_pp=35.690 val_acc=0.379395
+>Eval: Iter=12800 (0.225 epochs) val_loss=3.575 val_pp=35.690 val_acc=0.379395
+>Eval: Iter=12800 (0.225 epochs) val_loss=3.575 val_pp=35.690 val_acc=0.379395
+>Eval: Iter=13000 (0.228 epochs) val_loss=3.570 val_pp=35.512 val_acc=0.379407
+>Eval: Iter=13000 (0.228 epochs) val_loss=3.570 val_pp=35.512 val_acc=0.379407
+>Eval: Iter=13000 (0.228 epochs) val_loss=3.570 val_pp=35.512 val_acc=0.379407
+>Eval: Iter=13000 (0.228 epochs) val_loss=3.570 val_pp=35.512 val_acc=0.379407
+>Eval: Iter=13200 (0.232 epochs) val_loss=3.565 val_pp=35.334 val_acc=0.380222
+>Eval: Iter=13200 (0.232 epochs) val_loss=3.565 val_pp=35.334 val_acc=0.380222
+>Eval: Iter=13200 (0.232 epochs) val_loss=3.565 val_pp=35.334 val_acc=0.380222
+>Eval: Iter=13200 (0.232 epochs) val_loss=3.565 val_pp=35.334 val_acc=0.380222
+>Eval: Iter=13400 (0.235 epochs) val_loss=3.560 val_pp=35.148 val_acc=0.380747
+>Eval: Iter=13400 (0.235 epochs) val_loss=3.560 val_pp=35.148 val_acc=0.380747
+>Eval: Iter=13400 (0.235 epochs) val_loss=3.560 val_pp=35.148 val_acc=0.380747
+>Eval: Iter=13400 (0.235 epochs) val_loss=3.560 val_pp=35.148 val_acc=0.380747
+>Eval: Iter=13400 (0.235 epochs) val_loss=3.560 val_pp=35.148 val_acc=0.380747
+>Eval: Iter=13400 (0.235 epochs) val_loss=3.560 val_pp=35.148 val_acc=0.380747
+>Eval: Iter=13400 (0.235 epochs) val_loss=3.560 val_pp=35.148 val_acc=0.380747
+>Eval: Iter=13400 (0.235 epochs) val_loss=3.560 val_pp=35.148 val_acc=0.380747
+>Eval: Iter=13400 (0.235 epochs) val_loss=3.560 val_pp=35.148 val_acc=0.380747
+>Eval: Iter=13800 (0.242 epochs) val_loss=3.549 val_pp=34.791 val_acc=0.381783
+>Eval: Iter=13800 (0.242 epochs) val_loss=3.549 val_pp=34.791 val_acc=0.381783
+>Eval: Iter=13800 (0.242 epochs) val_loss=3.549 val_pp=34.791 val_acc=0.381783
+>Eval: Iter=13800 (0.242 epochs) val_loss=3.549 val_pp=34.791 val_acc=0.381783
+>Eval: Iter=14000 (0.246 epochs) val_loss=3.546 val_pp=34.665 val_acc=0.382107
+>Eval: Iter=14000 (0.246 epochs) val_loss=3.546 val_pp=34.665 val_acc=0.382107
+>Eval: Iter=14000 (0.246 epochs) val_loss=3.546 val_pp=34.665 val_acc=0.382107
+>Eval: Iter=14000 (0.246 epochs) val_loss=3.546 val_pp=34.665 val_acc=0.382107
+>Eval: Iter=14000 (0.246 epochs) val_loss=3.546 val_pp=34.665 val_acc=0.382107
+>Eval: Iter=14000 (0.246 epochs) val_loss=3.546 val_pp=34.665 val_acc=0.382107
+>Eval: Iter=14000 (0.246 epochs) val_loss=3.546 val_pp=34.665 val_acc=0.382107
+>Eval: Iter=14000 (0.246 epochs) val_loss=3.546 val_pp=34.665 val_acc=0.382107
+>Eval: Iter=14000 (0.246 epochs) val_loss=3.546 val_pp=34.665 val_acc=0.382107
+>Eval: Iter=14400 (0.253 epochs) val_loss=3.537 val_pp=34.352 val_acc=0.383007
+>Eval: Iter=14400 (0.253 epochs) val_loss=3.537 val_pp=34.352 val_acc=0.383007
+>Eval: Iter=14400 (0.253 epochs) val_loss=3.537 val_pp=34.352 val_acc=0.383007
+>Eval: Iter=14400 (0.253 epochs) val_loss=3.537 val_pp=34.352 val_acc=0.383007
+>Eval: Iter=14400 (0.253 epochs) val_loss=3.537 val_pp=34.352 val_acc=0.383007
+>Eval: Iter=14400 (0.253 epochs) val_loss=3.537 val_pp=34.352 val_acc=0.383007
+>Eval: Iter=14400 (0.253 epochs) val_loss=3.537 val_pp=34.352 val_acc=0.383007
+>Eval: Iter=14400 (0.253 epochs) val_loss=3.537 val_pp=34.352 val_acc=0.383007
+>Eval: Iter=14400 (0.253 epochs) val_loss=3.537 val_pp=34.352 val_acc=0.383007
+>Eval: Iter=14800 (0.260 epochs) val_loss=3.530 val_pp=34.122 val_acc=0.384055
+>Eval: Iter=14800 (0.260 epochs) val_loss=3.530 val_pp=34.122 val_acc=0.384055
+>Eval: Iter=14800 (0.260 epochs) val_loss=3.530 val_pp=34.122 val_acc=0.384055
+>Eval: Iter=14800 (0.260 epochs) val_loss=3.530 val_pp=34.122 val_acc=0.384055
+>Eval: Iter=14800 (0.260 epochs) val_loss=3.530 val_pp=34.122 val_acc=0.384055
+>Eval: Iter=14800 (0.260 epochs) val_loss=3.530 val_pp=34.122 val_acc=0.384055
+>Eval: Iter=14800 (0.260 epochs) val_loss=3.530 val_pp=34.122 val_acc=0.384055

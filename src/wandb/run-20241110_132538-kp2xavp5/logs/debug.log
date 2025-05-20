@@ -1,0 +1,29 @@
+2024-11-10 13:25:38,205 INFO    MainThread:2499505 [wandb_setup.py:_flush():76] Current SDK version is 0.17.2
+2024-11-10 13:25:38,205 INFO    MainThread:2499505 [wandb_setup.py:_flush():76] Configure stats pid to 2499505
+2024-11-10 13:25:38,205 INFO    MainThread:2499505 [wandb_setup.py:_flush():76] Loading settings from /home/chenyupeng/.config/wandb/settings
+2024-11-10 13:25:38,205 INFO    MainThread:2499505 [wandb_setup.py:_flush():76] Loading settings from /home/chenyupeng/yupeng/jaggi-lr/src/wandb/settings
+2024-11-10 13:25:38,206 INFO    MainThread:2499505 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-11-10 13:25:38,206 INFO    MainThread:2499505 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-11-10 13:25:38,206 INFO    MainThread:2499505 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program_abspath': '/home/chenyupeng/yupeng/jaggi-lr/src/main.py', 'program': '/home/chenyupeng/yupeng/jaggi-lr/src/main.py'}
+2024-11-10 13:25:38,206 INFO    MainThread:2499505 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-11-10 13:25:38,206 INFO    MainThread:2499505 [wandb_init.py:_log_setup():520] Logging user logs to /home/chenyupeng/yupeng/jaggi-lr/src/wandb/run-20241110_132538-kp2xavp5/logs/debug.log
+2024-11-10 13:25:38,206 INFO    MainThread:2499505 [wandb_init.py:_log_setup():521] Logging internal logs to /home/chenyupeng/yupeng/jaggi-lr/src/wandb/run-20241110_132538-kp2xavp5/logs/debug-internal.log
+2024-11-10 13:25:38,206 INFO    MainThread:2499505 [wandb_init.py:init():560] calling init triggers
+2024-11-10 13:25:38,206 INFO    MainThread:2499505 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {'config_format': 'base', 'experiment_name': None, 'seed': 0, 'data_seed': 1337, 'eval_interval': 200, 'full_eval_at': [], 'eval_batches': 32, 'device': 'cuda:0', 'distributed_backend': None, 'log_interval': 50, 'results_base_folder': '/mntcephfs/lab_data/chenyupeng/senmiao_jaggi_exp_results', 'permanent_ckpt_interval': 0, 'latest_ckpt_interval': 0, 'resume_from': None, 'resume_from_swa': None, 'auto_resume': True, 'phase1_steps': 3000, 'phase2_steps': 27000, 'phase1_interval': 300, 'phase2_interval': 4000, 'phase3_interval': 1000, 'wandb': True, 'wandb_project': 'my-project', 'wandb_run_prefix': 'none', 'eval_seq_prefix': 'none', 'log_dynamics': False, 'dynamics_logger_cfg': './src/logger/rotational_logger.yaml', 'scheduler': 'wsd', 'cos_inf_steps': 0, 'iterations': 45000, 'warmup_steps': 300, 'lr': 0.001, 'wsd_final_lr_scale': 0.0, 'wsd_fract_decay': 0.1, 'decay_type': 'linear', 'opt': 'adamw', 'batch_size': 50, 'acc_steps': 4, 'weight_decay': 0.1, 'beta1': 0.9, 'beta2': 0.95, 'grad_clip': 1.0, 'weight_average': False, 'wa_interval': 5, 'wa_horizon': 500, 'wa_dtype': 'float32', 'wa_use_temp_dir': False, 'wa_sweep_horizon': False, 'max_num_wa_sweeps': 5, 'exponential_moving_average': False, 'ema_interval': 10, 'ema_decay': 0.95, 'ema_after_warmup': False, 'datasets_dir': '/mntcephfs/lab_data/chenyupeng/llm_datasets', 'dataset': 'slimpajama', 'tokenizer': 'gpt2', 'vocab_size': 50304, 'data_in_ram': False, 'model': 'llama', 'parallel_block': False, 'use_pretrained': 'none', 'from_dense': False, 'init_std': 0.02, 'dropout': 0.0, 'n_head': 12, 'n_layer': 12, 'sequence_length': 512, 'n_embd': 768, 'multiple_of': 256, 'rmsnorm_eps': 1e-05, 'dtype': 'bfloat16', 'bias': False, 'compile': True, 'mlp_dim_exp_factor': 1.0, 'world_size': 1}
+2024-11-10 13:25:38,206 INFO    MainThread:2499505 [wandb_init.py:init():610] starting backend
+2024-11-10 13:25:38,206 INFO    MainThread:2499505 [wandb_init.py:init():614] setting up manager
+2024-11-10 13:25:38,207 INFO    MainThread:2499505 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-11-10 13:25:38,207 INFO    MainThread:2499505 [wandb_init.py:init():622] backend started and connected
+2024-11-10 13:25:38,209 INFO    MainThread:2499505 [wandb_init.py:init():711] updated telemetry
+2024-11-10 13:25:38,210 INFO    MainThread:2499505 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2024-11-10 13:25:40,413 INFO    MainThread:2499505 [wandb_run.py:_on_init():2402] communicating current version
+2024-11-10 13:25:41,918 INFO    MainThread:2499505 [wandb_run.py:_on_init():2411] got version response upgrade_message: "wandb version 0.18.6 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-11-10 13:25:41,918 INFO    MainThread:2499505 [wandb_init.py:init():795] starting run threads in backend
+2024-11-10 13:25:50,249 INFO    MainThread:2499505 [wandb_run.py:_console_start():2380] atexit reg
+2024-11-10 13:25:50,249 INFO    MainThread:2499505 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2024-11-10 13:25:50,249 INFO    MainThread:2499505 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2024-11-10 13:25:50,249 INFO    MainThread:2499505 [wandb_run.py:_redirect():2325] Redirects installed.
+2024-11-10 13:25:50,271 INFO    MainThread:2499505 [wandb_init.py:init():838] run started, returning control to user process
+2024-11-10 20:15:53,387 WARNING MsgRouterThr:2499505 [router.py:message_loop():77] message_loop has been closed
