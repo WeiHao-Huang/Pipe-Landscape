@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import random
 import os
-import schedulefree
+# import schedulefree
 
 import numpy as np
 import torch
@@ -54,7 +54,7 @@ def get_args():
         "--model_size", type=str, default="33M", help="the batches used to eval the landscape"
     )
     parser.add_argument(
-        "--ckpt_path", type=str, default="/chenyupeng/old_files/yupeng_gpt/WSD/river_valley_project/llama_33m/slimpajama_llama_nlayers8_nhead6_lr0.002_sched_wsd_warmup300_decay_linear_0.1_iter15000_bs50x4_ws1_seed0_data_seed1337/ckpts", help="the path to read ckpt"
+        "--ckpt_path", type=str, default="/huangweihao/project1/llama_33m/slimpajama_llama_nlayers8_nhead6_lr0.002_sched_wsd_warmup300_decay_linear_0.1_iter15000_bs50x4_ws1_seed0_data_seed1337/ckpts", help="the path to read ckpt"
     )
     parser.add_argument(
         "--save_path", type=str, default="", help="the path to save landscape"
@@ -78,15 +78,15 @@ def get_args():
         args.n_layer=12
         args.n_head=12
         args.n_embd=768
-        args.ckpt_path="/chenyupeng/old_files/yupeng_gpt/WSD/river_valley_project/llama_100m/slimpajama_llama_nlayers12_nhead12_lr0.001_sched_wsd_warmup300_decay_linear_0.1_iter25000_bs50x2_ws2_seed0_data_seed1337/ckpts"
+        args.ckpt_path="/huangweihao/project1/llama_100m/slimpajama_llama_nlayers12_nhead12_lr0.001_sched_wsd_warmup300_decay_linear_0.1_iter25000_bs50x2_ws2_seed0_data_seed1337/ckpts"
     elif args.model_size == "300M":
         args.n_layer=24
         args.n_head=16
         args.n_embd=1024
-        args.ckpt_path="/chenyupeng/old_files/yupeng_gpt/WSD/river_valley_project/llama_360m/slimpajama_llama_nlayers24_nhead16_lr0.001_sched_wsd_warmup300_decay_linear_0.1_iter20000_bs50x1_ws4_seed0_data_seed1337"
+        args.ckpt_path="/huangweihao/project1/llama_360m/slimpajama_llama_nlayers24_nhead16_lr0.001_sched_wsd_warmup300_decay_linear_0.1_iter20000_bs50x1_ws4_seed0_data_seed1337"
     if args.landscape_metric == "hessian_similarity":
         args.model = "LlamaWithEigenvector"
-    args.datasets_dir = "/chenyupeng/data_files/llm_datasets"
+    args.datasets_dir = "/huangweihao/project1/datasets"
     return config.parse_args_with_format(
         format=args.config_format, base_parser=parser, args=rem_args, namespace=args
     )
@@ -176,8 +176,23 @@ if args.landscape_type == "1D":
         landscape1d.get_landscape(args.landscape_metric)
 
 else:
-    #for i in range(num-2):
+    for i in range(1, num-1):
+        print(f"i : {i}")
     #    plot_2D_landscape(current_ckpt_list[i], current_ckpt_list[i+1], current_ckpt_list[i+2],args)
-    pass
+        landscape2d = Landscape2D(
+                model = load_ck_state(model, current_ckpt_list[i],args),
+                eval_batches = eval_batches, # 不确定运行环境是否支持内建泛型（对 list, tuple 的支持需要 Python > 3.9） 
+                alpha_range = (0,1),
+                beta_range = (0,1),
+                resolution = 10,
+                save_path = args.save_path, 
+                kind = "contour",
+                fig_suffix =  f"{current_ckpt_list[i-1]}_{current_ckpt_list[i]}_{current_ckpt_list[i+1]}_new", # 文件后缀
+                dpi = 300
+                )
+        landscape2d.set_projection_directions(method = "from points", modelA = load_ck_state(model, current_ckpt_list[i-1],args), modelB = load_ck_state(model, current_ckpt_list[i+1],args))
+        landscape2d.get_landscape(args.landscape_metric)
+
+
 
 print("done")

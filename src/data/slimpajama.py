@@ -10,7 +10,7 @@ tknzr = tiktoken.get_encoding("gpt2")
 
 
 def get_slimpajama_data(datasets_dir, num_proc=40):
-    SPJ_DATA_PATH = os.path.join(datasets_dir, "slimpajama6B/")
+    SPJ_DATA_PATH = datasets_dir # os.path.join(datasets_dir, "slimpajama6B/")
     print(SPJ_DATA_PATH)
     if not os.path.exists(os.path.join(SPJ_DATA_PATH, "train.bin")):
         os.makedirs(SPJ_DATA_PATH, exist_ok=True)

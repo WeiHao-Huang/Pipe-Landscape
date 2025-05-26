@@ -139,7 +139,7 @@ class LandscapeVisualizer(ABC):
         # 清空梯度
         for p in model.parameters():
             p.grad = None
-        
+
         # 梯度累积
         assert self.eval_batches is not None
         num_batches = len(self.eval_batches)
@@ -357,14 +357,14 @@ class Landscape1D(LandscapeVisualizer):
             if getattr(self, self._METRIC_OUTPUTS[metric][-1]) is not None:
                 plt.figure(figsize=(8, 6), dpi=self.dpi, facecolor='white', constrained_layout=True)
                 # 绘制折线图
-                #print(f"self.alphas.numpy(): {self.alphas.numpy()}")
-                #print(f"np.array(self.METRIC_OUTPUTS[metric]) : {np.array(getattr(self, f"_{metric}"))}")
-                print(np.array(getattr(self, self._METRIC_OUTPUTS[metric][-1])))
                 plt.plot(self.alphas.numpy(), np.array(getattr(self, self._METRIC_OUTPUTS[metric][-1])), marker='o', markersize=6, label=metric)
                 # 在每个点上标注数值
-                for x, y in zip(self.alphas.numpy(), np.array(self.METRIC_OUTPUTS[metric])):
-                    # assert isinstance(y, float)  # 强制类型断言用于静态类型检查
-                    plt.text(f'{x}', f'{y + 0.01}', f'{y:.4f}', ha='center', va='bottom', fontsize=9)
+                y_max = np.array(getattr(self, self.METRIC_OUTPUTS[metric][-1])).max()
+                y_min = np.array(getattr(self, self.METRIC_OUTPUTS[metric][-1])).min()
+                offset = (y_max - y_min) * 0.02  # 偏移量为 y 范围的2%
+                for x, y in zip(self.alphas.numpy(), np.array(getattr(self, self.METRIC_OUTPUTS[metric][-1]))):
+                    assert isinstance(y, float)  # 强制类型断言用于静态类型检查
+                    plt.text(x, y + offset, f'{y:.4f}', ha='center', va='bottom', fontsize=9)
                 # 其他
                 plt.xlabel('Interpolation Factor')
                 plt.ylabel(f'{metric}')
@@ -390,6 +390,7 @@ class Landscape2D(LandscapeVisualizer):
             alpha_range: Tuple[float, float],
             beta_range: Tuple[float, float],
             resolution: int,
+            kind: str,
             save_path: str, 
             fig_suffix: str, # 文件后缀
             dpi: int = 300, 
@@ -405,6 +406,7 @@ class Landscape2D(LandscapeVisualizer):
         # -------------------------------------------------------------
         self.base_weight = next(iter(self._get_model_weights().values())) # NOTE: 字典中应只有唯一值，此处获取其值
         self.save_path = save_path
+        self.kind = kind # TODO: 在未来的版本中新增输入安全检查
         self.fig_suffix = fig_suffix
         self.dpi = dpi
         # TODO: 在未来的版本中开发一个安全的 linspace 工具函数
@@ -548,14 +550,15 @@ class Landscape2D(LandscapeVisualizer):
         # 绘制所有数据的图形
         for metric in self.ALLOWED_METRICS:
             # 所有计算的 metric 都绘图
-            if self.METRIC_OUTPUTS[metric] is not None:
+            metric_list = getattr(self, self.METRIC_OUTPUTS[metric][-1]) # TODO: 这个做法并不 fancy，在未来的版本中需要优化
+            if metric_list is not None:
                 # 将 self._loss 等由 [...] 精确调整为二维 numpy 列表
-                metric_Matrix = np.array(self.METRIC_OUTPUTS[metric]).reshape(gridshape)
+                metric_Matrix = np.array(metric_list).reshape(gridshape)
 
                 plt.figure(figsize=(8, 6), dpi=self.dpi, facecolor='white', constrained_layout=True)
                 # 绘制等高线图
-                contour = plt.contourf(Alpha, Beta, metric_Matrix, cmap='viridis')
-                plt.clabel(contour, inline=True, fontsize=10, fmt="%.4f")  # 显示数值标签
+                contour = plt.contourf(Alpha, Beta, metric_Matrix, clevels = np.linspace(metric_list.min(), metric_list.max(), num=30), map='RdBu')
+                plt.clabel(contour, inline=True, fontsize=10, fmt="%.4f", colors='black')  # 显示数值标签
                 plt.colorbar(contour) # 显示色条
                 # 标注模型点数值
                 model_points = {
@@ -567,23 +570,26 @@ class Landscape2D(LandscapeVisualizer):
                     x, y = props["pos"]
                     color = props["color"]
                     marker = props["marker"]
-                    plt.scatter(x, y, c=color, marker=marker, s=50, label=model_name)
+                    plt.scatter(x, y, c=color, marker=marker, s=150, label=model_name)
                     # TODO: 在未来的版本中加入 metric_Matrix 中对应的三个模型数值
-                    plt.text(x, y + 0.1, f"{model_name}", ha='center', va='bottom', fontsize=10, color='black') 
+                    plt.text(x, y + 0.02, f"{model_name}", ha='center', va='bottom', fontsize=10, color='black') 
                 # 其他
                 plt.xlabel('Alpha Direction')
                 plt.ylabel('Beta Direction')
                 if self.method == 'from points':
                     plt.title(f'Contour Plot of {metric} with Projection Method({self.method}) via {self.fig_suffix}')
                 plt.grid(True)
-                plt.legend()
-                plt.tight_layout()
+                # plt.margins(x=0.1, y=0.1) # FIXME: 似乎没有起到留白的效果？
+                plt.xlim(Alpha.min() - 0.1, Alpha.max() + 0.1) # NOTE: 试试看能不能强制留白
+                plt.ylim(Beta.min() - 0.1, Beta.max() + 0.1)
+                # FIXME plt.legend()
+                # plt.tight_layout() # FIXME: 显示这行代码与 constrained_layout 冲突
                 # 保存
                 os.makedirs(self.save_path, exist_ok=True)
                 safe_suffix = re.sub(r'[^\w\-_.]', '_', str(self.fig_suffix))
                 filename = f"2D_landscape_contour_{metric}_{safe_suffix}.png"
                 filepath = os.path.join(self.save_path, filename)
-                plt.savefig(filepath, dpi=self.dpi)
+                plt.savefig(filepath, dpi=self.dpi, bbox_inches='tight', pad_inches=0.2) # NOTE: 新增 bbox_inches 特性 + pad_inches
                 plt.show()
 
 
@@ -600,9 +606,10 @@ class Landscape2D(LandscapeVisualizer):
         # 绘制所有数据的图形
         for metric in self.ALLOWED_METRICS:
             # 所有计算的 metric 都绘图
-            if self.METRIC_OUTPUTS[metric] is not None:
+            metric_list = getattr(self, self.METRIC_OUTPUTS[metric][-1])
+            if metric_list is not None:
                 # 将 self._loss 等由 [...] 精确调整为二维 numpy 列表
-                metric_Matrix = np.array(self.METRIC_OUTPUTS[metric]).reshape(gridshape)
+                metric_Matrix = np.array(metric_list).reshape(gridshape)
 
                 fig = plt.figure(figsize=(10, 8), dpi=self.dpi, facecolor='white', constrained_layout=True)
                 # 绘制 surface 图
@@ -632,7 +639,7 @@ class Landscape2D(LandscapeVisualizer):
                     ax.set_title(f"Surface Plot of {metric} with Projection Method({self.method}) via {self.fig_suffix}")
                 plt.grid(True)
                 plt.legend()
-                plt.tight_layout()
+                # plt.tight_layout() #FIXME: 同上述潜在原因
                 # 保存
                 os.makedirs(self.save_path, exist_ok=True)
                 safe_suffix = re.sub(r'[^\w\-_.]', '_', str(self.fig_suffix))
@@ -640,6 +647,14 @@ class Landscape2D(LandscapeVisualizer):
                 filepath = os.path.join(self.save_path, filename)
                 plt.savefig(filepath, dpi=self.dpi)
                 plt.show()
+
+
+    # TODO: 进一步维护逻辑检查和访问权限。
+    def _plot(self):
+        if self.kind in ('contour', 'both'):
+            self.plot_contour()
+        if self.kind in ('surface', 'both'):
+            self.plot_surface()
 
 
 
