@@ -54,7 +54,7 @@ def get_args():
         "--model_size", type=str, default="33M", help="the batches used to eval the landscape"
     )
     parser.add_argument(
-        "--ckpt_path", type=str, default="/huangweihao/project1/llama_33m/slimpajama_llama_nlayers8_nhead6_lr0.002_sched_wsd_warmup300_decay_linear_0.1_iter15000_bs50x4_ws1_seed0_data_seed1337/ckpts", help="the path to read ckpt"
+        "--ckpt_path", type=str, default="../data/llama_33m/slimpajama_llama_nlayers8_nhead6_lr0.002_sched_wsd_warmup300_decay_linear_0.1_iter15000_bs50x4_ws1_seed0_data_seed1337/ckpts", help="the path to read ckpt"
     )
     parser.add_argument(
         "--save_path", type=str, default="", help="the path to save landscape"
@@ -78,15 +78,15 @@ def get_args():
         args.n_layer=12
         args.n_head=12
         args.n_embd=768
-        args.ckpt_path="/huangweihao/project1/llama_100m/slimpajama_llama_nlayers12_nhead12_lr0.001_sched_wsd_warmup300_decay_linear_0.1_iter25000_bs50x2_ws2_seed0_data_seed1337/ckpts"
+        args.ckpt_path="../data/llama_100m/slimpajama_llama_nlayers12_nhead12_lr0.001_sched_wsd_warmup300_decay_linear_0.1_iter25000_bs50x2_ws2_seed0_data_seed1337/ckpts"
     elif args.model_size == "300M":
         args.n_layer=24
         args.n_head=16
         args.n_embd=1024
-        args.ckpt_path="/huangweihao/project1/llama_360m/slimpajama_llama_nlayers24_nhead16_lr0.001_sched_wsd_warmup300_decay_linear_0.1_iter20000_bs50x1_ws4_seed0_data_seed1337"
+        args.ckpt_path="../data/llama_360m/slimpajama_llama_nlayers24_nhead16_lr0.001_sched_wsd_warmup300_decay_linear_0.1_iter20000_bs50x1_ws4_seed0_data_seed1337"
     if args.landscape_metric == "hessian_similarity":
         args.model = "LlamaWithEigenvector"
-    args.datasets_dir = "/huangweihao/project1/datasets"
+    args.datasets_dir = "../data/datasets"
     return config.parse_args_with_format(
         format=args.config_format, base_parser=parser, args=rem_args, namespace=args
     )
