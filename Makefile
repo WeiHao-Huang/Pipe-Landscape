@@ -1,11 +1,16 @@
+USER ?= $(shell whoami)
+
 init: link-ssh-config
 
 link-ssh-config:
-	@if [ ! -L ~/.ssh/config ]; then \
-		ln -s /$(USER)/config/.ssh/config ~/.ssh/config; \
-		echo "Linked SSH config."; \
+	@target="/$(USER)/config/.ssh/config"; \
+	link="$$HOME/.ssh/config"; \
+	if [ ! -L ~/.ssh/config ]; then \
+		ln -s "$$target" "$$link"; \
+		echo "Linked SSH config: $$link -> $$target"; \
 	else \
-		echo "SSH config already linked."; \
+		ln -sf "$$target" "$$link"; \
+		echo "Replacing existing config: $$link -> $$target"; \
 	fi
 
 stage:
